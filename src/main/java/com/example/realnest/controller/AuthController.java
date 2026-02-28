@@ -25,18 +25,14 @@ import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("api/auth")
-@CrossOrigin("*")
+// @CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
     @Autowired
     private AuthService authservice;
     @Autowired
     private UserService userService;
 
-    // @PostMapping("/sign-in")
-    // public ResponseEntity<?> signIn(@RequestBody Login l) {
-    // return ResponseEntity.ok(Map.of("token", authservice.signIn(l.getUsername(),
-    // l.getPassword())));
-    // }
     @PostMapping("/sign-in")
     public ResponseEntity<?> signIn(@RequestBody Login l) {
         try {
@@ -57,11 +53,6 @@ public class AuthController {
             return ResponseEntity.status(500).body(Map.of("error", "Internal server error"));
         }
     }
-
-    // @PostMapping("/sign-up")
-    // public String signUp(@RequestBody Login l) {
-    // return authservice.signUp(l);
-    // }
 
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody Login l) {
@@ -88,12 +79,6 @@ public class AuthController {
         return updateProperty;
     }
 
-    // @DeleteMapping("/deleteUser")
-    // public RealNest deleteProperty(@RequestParam("id") Long id) {
-    // RealNest delprops = userService.deleteLogin(id);
-    // // return "User deleted successfully with id: " + id;
-    // return delprops
-    // }
     @DeleteMapping("/deleteUser")
     public ResponseEntity<String> deleteUser(@RequestParam("id") Long id) {
         try {

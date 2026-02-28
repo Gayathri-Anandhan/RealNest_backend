@@ -10,8 +10,8 @@ COPY . .
 RUN chmod +x mvnw
 
 # Build the project
-#RUN ./mvnw clean package
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean package
+# RUN ./mvnw clean package -DskipTests
 
 # Run the jar file
 CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
